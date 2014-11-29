@@ -37,6 +37,9 @@ group :development, :test do
   gem "factory_girl_rails"
   gem "pry-rails"
   gem "rspec-rails", "~> 3.0.0"
+  gem 'better_errors' # helps when things go wrong
+  gem 'quiet_assets' # suppresses distracting messages in the log
+  gem 'rails_layout' # generates files for an application layout
 end
 
 group :test do
@@ -51,3 +54,10 @@ end
 
 group :staging, :production do
 end
+# learn-rails
+gem 'activerecord-tableless' # helps to use Rails without a database
+gem 'compass-rails', '~> 2.0.alpha.0'
+gem 'figaro' # configuration framework
+gem 'gibbon' # access to the MailChimp API
+gem 'google_drive' # use Google Drive spreadsheets for data storage
+
