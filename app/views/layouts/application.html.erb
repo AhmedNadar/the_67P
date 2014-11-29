@@ -12,15 +12,13 @@
 <body class="<%= body_class %>">
   <header class="navigation">
     <div class="navigation-wrapper">
-      <a href="javascript:void(0)" class="logo">
+      <%= link_to root_path,  class:'logo' do %>
         <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_1.png" alt="Logo Image">
-      </a>
+      <% end %>
       <a href="" class="navigation-menu-button" id="js-mobile-menu">MENU</a>
       <div class="nav">
         <ul id="navigation-menu">
-          <li class="nav-link"><a href="javascript:void(0)">Products</a></li>
-          <li class="nav-link"><a href="javascript:void(0)">About Us</a></li>
-          <li class="nav-link"><a href="javascript:void(0)">Contact</a></li>
+          <%= render 'layouts/navigation_links' %>
         </ul>
       </div>
     </div>
