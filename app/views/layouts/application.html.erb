@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="ROBOTS" content="NOODP" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= title %></title>
+  <title><%= content_for?(:title) ? yield(:title) +' - '+ "The 67P"  : "The 67P" %></title>
   <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "The 67P " %>">
   <%= stylesheet_link_tag :application, media: "all" %>
   <%= csrf_meta_tags %>
@@ -13,7 +13,7 @@
   <header class="navigation">
     <div class="navigation-wrapper">
       <%= link_to root_path,  class:'logo' do %>
-        <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_1.png" alt="Logo Image">
+      <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_1.png" alt="Logo Image">
       <% end %>
       <a href="" class="navigation-menu-button" id="js-mobile-menu">MENU</a>
       <div class="nav">
@@ -25,11 +25,10 @@
   </header>
   <main role="main">
     <%= render "flashes" -%>
-    <%#= render 'layouts/messages' %>
-    <%= yield %>
+    <div class="refills-wrapper">
+      <%= yield %>
+    </div>
   </main>
   <%= render "javascript" %>
 </body>
 </html>
-
-
