@@ -23,10 +23,10 @@ Returns true if obj is between the begin and end of the range.
 	if valid_dates.cover?(date) end #=> [true, false]
 ```
 
-**parse(...)** (string='-4712-01-01'[, comp=true[, start=ITALY]])
-  Parses the given representation of date and time, and creates a date object.
-
-If the optional second argument is true and the detected year is in the range “00” to “99”, cons    iders the year a 2-digit form and makes it full.
+* **parse(...)** (string='-4712-01-01'[, comp=true[, start=ITALY]])
+  
+  	Parses the given representation of date and time, and creates a date object.
+	If the optional second argument is true and the detected year is in the range “00” to “99”, cons    iders the year a 2-digit form and makes it full.
 
 ```
 	valid_dates = Date.parse(DATA_START_DATE) #=> '2006-09-20'
@@ -34,3 +34,36 @@ If the optional second argument is true and the detected year is in the range �
 	Date.parse('20010203')            #=> #<Date: 2001-02-03 ...>
 	Date.parse('3rd Feb 2001')        #=> #<Date: 2001-02-03 ...>
 ```
+
+* **upto(max){|date| ...}**
+  
+	This method is equivalent to step(max, 1){|date| …}.
+  Which basicly is a loop
+  `start_date.upto(end_date)` Loop from start_date up to end_end
+  
+* **map** 
+
+	Invokes the given block once for each element of self. Creates a new array containing the values returned by the block. Same as Enumerable#collect. If no block is given, an Enumerator is returned instead.
+
+```	
+	a = [ "a", "b", "c", "d" ]
+	a.collect { |x| x + "!" }        #=> ["a!", "b!", "c!", "d!"]
+	a.map.with_index{ |x, i| x * i } #=> ["", "b", "cc", "ddd"]
+	a                                #=> ["a", "b", "c", "d"]
+```
+
+  
+### Module
+
+* **OpenURI** is an easy-to-use wrapper for Net::HTTP, Net::HTTPS and Net::FTP.
+	It is possible to open an http, https or ftp URL as though it were a file:
+
+```
+	open("http://www.ruby-lang.org/") {|f|
+	  f.each_line {|line| p line}
+	}
+```
+And `data = open(url).readlines` where `url = "http://lpo.dt.navy.mil/data/DM/2012/2012_01_01/Wind_Speed"`
+
+
+  
