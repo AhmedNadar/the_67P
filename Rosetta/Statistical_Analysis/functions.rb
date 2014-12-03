@@ -1,11 +1,24 @@
 require 'readline'
 require 'date'
+require 'open-uri'
+
 
 # Earliest date for consistent data
 DATA_START_DATE ='2006-09-20'
 
 # Max number of days to retrive data, be kind to remote server
 MAX_DAYS = 7
+
+
+# Reading types as a hash. Eash key is the name by the remote server as "Wind_Speed"
+# And each value is a plain text for that datq
+READING_TYPES ={
+  Air_Temp: "Air Temp",
+  Barometric_Press: "Pressure",
+  Wind_Speed: "Wind Speed"
+}
+
+### user Input ###
 
 # ask the user to provide start and end date
 def query_user_for_date_range
@@ -71,4 +84,40 @@ def date_range_valid?(start_date, end_date)
     return false
   end
   return true
+end
+
+
+### Retrive Remote Data ###
+
+# Retrives reading for specific reading type as "Wind_Speed", for a range of dates, form
+# the remote server as an array of floating point valuse
+
+def get_readings_from_remote_server_for_dates(type, start_date, end_date)
+  readings = []
+  start_date.upto(end_date) do |date|
+    readings += get_readings_from_remote(type, date)
+  end
+  return readings
+end
+
+# Retrieves readings for a particular reading type for a particular date from the remote
+# server as an array of floating points values
+
+def get_readings_from_remote(type, date)
+  raise "Invalid Reading Type" unless READING_TYPES.keys.include?(type)
+
+  # read the remote file, splite reading into an array
+  # http://lpo.dt.navy.mil/data/DM/2012/2012_01_01/Wind_Speed <=> the end result
+  base_url = "http://lpo.dt.navy.mil/data/DM"
+  url = "#{base_url}/#{date.year}/#{date.strftime("%Y_%m_%d")}/#{type}"
+  puts "Retriving: #{url}"
+  data = open(url).readlines # ruby reads lines
+
+  # Extract the reading from each line
+  # "2014_02_22 00:23:45 4.7\r\n" becomes 4.7
+  readings = data.map do |line| # loop through each line
+    line_times = line.chomp.split(" ") # chomp and split each line
+    reading = line_times[2].to_f # convert each line to float
+  end
+  return readings
 end
