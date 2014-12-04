@@ -143,6 +143,10 @@ def median(array)
   end
 end
 
+# Given a start and end date, will fo through all supported 
+# READING_TYPES, retrieve valuse from the remote server,
+# and calculate the mean and average pf the values.
+# Results are returned as Hash.
 def retrieve_and_calculate_results(start_date, end_date)
   results = {}
   READING_TYPES.each do |type, label|
