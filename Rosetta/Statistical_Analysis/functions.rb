@@ -62,7 +62,6 @@ def query_user_for_date
   return date
 end
 
-
 # validation for single date either start or end date
 # that date should be in a range between start date and today
 def date_valid?(date)
@@ -85,7 +84,6 @@ def date_range_valid?(start_date, end_date)
   end
   return true
 end
-
 
 ### Retrive Remote Data ###
 
@@ -120,4 +118,39 @@ def get_readings_from_remote(type, date)
     reading = line_times[2].to_f # convert each line to float
   end
   return readings
+end
+
+### Data Calculations ###
+# calculate the mean (average) on an array of numbers
+def mean(array)
+  total = array.inject(0) {|sum, x| sum += x}
+  # user to_f to avoid get integer result
+  return total.to_f / array.length
+end
+
+# calculate the median (middle) of an array of number
+def median(array)
+  array.sort!
+  length = array.length
+  if length % 2 == 1
+    # odd length, return the middle number
+    return array[length / 2]
+  else
+    # even number, average the two middle numbers
+    item1 = array[length / 2 - 1]
+    item2 = array[length / 2]
+    return mean([item1, item2])
+  end
+end
+
+def retrieve_and_calculate_results(start_date, end_date)
+  results = {}
+  READING_TYPES.each do |type, label|
+    readings = get_readings_from_remote_server_for_dates(type, start_date, end_date)
+    results[label] = {
+      mean: mean(readings),
+      median: median(readings)
+    }
+  end
+  return results
 end
