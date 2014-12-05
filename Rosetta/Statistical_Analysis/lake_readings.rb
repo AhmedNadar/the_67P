@@ -18,4 +18,12 @@ start_date, end_date = query_user_for_date_range
 #end
 
 results = retrieve_and_calculate_results(start_date, end_date)
-puts results.inspect
+# puts results.inspect
+
+# after inspect we get:
+# {"Air Temp"=> {:mean=> 43.78026030368766,  :median=> 44.7},
+#  "Pressure"=> {:mean=> 28.222559652928236, :median=> 28.3},
+#"Wind Speed"=> {:mean=> 18.017353579175673, :median=> 14.4}}
+
+# Now we need to display/print the result in table format
+output_results_table(results)
