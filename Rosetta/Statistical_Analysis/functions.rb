@@ -124,7 +124,7 @@ end
 # calculate the mean (average) on an array of numbers
 def mean(array)
   total = array.inject(0) {|sum, x| sum += x}
-  # user to_f to avoid get integer result
+  # use to_f to avoid get integer result
   return total.to_f / array.length
 end
 
@@ -164,14 +164,14 @@ end
 
 def output_results_table(results={})
   puts
-  puts "-----------------------------------------"
-  puts "| Type      | Mean       | Median       |"
-  puts "-----------------------------------------"
+  puts "----------------------------------------"
+  puts "| Type       | Mean       | Median     |"
+  puts "----------------------------------------"
   results.each do |label, hash|
-    print "| " + label.ljust(10)+ " | "
+    print "| " + label.ljust(10) + " | "
     print sprintf("%.6f", hash[:mean]).rjust(10) + " | "
     puts sprintf("%.6f", hash[:median]).rjust(10) + " | "
   end
-pust "---------------------------------------"
-pust
+  puts "----------------------------------------"
+  puts
 end
