@@ -24,7 +24,7 @@ Returns true if obj is between the begin and end of the range.
 ```
 
 * **parse(...)** (string='-4712-01-01'[, comp=true[, start=ITALY]])
-  
+
   	Parses the given representation of date and time, and creates a date object.
 	If the optional second argument is true and the detected year is in the range “00” to “99”, cons    iders the year a 2-digit form and makes it full.
 
@@ -36,23 +36,33 @@ Returns true if obj is between the begin and end of the range.
 ```
 
 * **upto(max){|date| ...}**
-  
+
 	This method is equivalent to step(max, 1){|date| …}.
   Which basicly is a loop
   `start_date.upto(end_date)` Loop from start_date up to end_end
-  
-* **map** 
+
+* **map**
 
 	Invokes the given block once for each element of self. Creates a new array containing the values returned by the block. Same as Enumerable#collect. If no block is given, an Enumerator is returned instead.
 
-```	
+```
 	a = [ "a", "b", "c", "d" ]
 	a.collect { |x| x + "!" }        #=> ["a!", "b!", "c!", "d!"]
 	a.map.with_index{ |x, i| x * i } #=> ["", "b", "cc", "ddd"]
 	a                                #=> ["a", "b", "c", "d"]
 ```
+* **inject**
 
-  
+	`{ |memo, obj| block } → obj` And `array.inject(0) {|sum, x| sum += x}`
+
+	Combines all elements of enum by applying a binary operation, specified by a block or a symbol that names a method or operator.
+
+* **to_f()**
+
+	`return total.to_f`
+	To use to_f in order to avoid get integer result. Returns a new Float object having approximately the same value as the BigDecimal number. Normal accuracy limits and built-in errors of binary Float arithmetic apply.
+
+
 ### Module
 
 * **OpenURI** is an easy-to-use wrapper for Net::HTTP, Net::HTTPS and Net::FTP.
@@ -66,4 +76,3 @@ Returns true if obj is between the begin and end of the range.
 And `data = open(url).readlines` where `url = "http://lpo.dt.navy.mil/data/DM/2012/2012_01_01/Wind_Speed"`
 
 
-  
