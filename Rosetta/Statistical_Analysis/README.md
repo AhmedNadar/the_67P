@@ -62,6 +62,26 @@ Returns true if obj is between the begin and end of the range.
 	`return total.to_f`
 	To use to_f in order to avoid get integer result. Returns a new Float object having approximately the same value as the BigDecimal number. Normal accuracy limits and built-in errors of binary Float arithmetic apply.
 
+* **sprintf**
+
+	`sprintf(format_string [, arguments...] )` And `print sprintf("%.6f", hash[:mean])`
+
+	Returns the string resulting from applying format_string to any additional arguments. Within the format string, any characters other than format sequences are copied to the result.
+
+	The syntax of a format sequence is follows.
+
+	%[flags][width][.precision]type
+
+* **rjust**
+
+		`rjust(integer, padstr=' ') and `print sprintf("%.6f", hash[:mean]).rjust(10)`
+	If integer is greater than the length of str, returns a new String of length integer with str right justified and padded with padstr; otherwise, returns str.
+
+	```
+		"hello".rjust(4)            #=> "hello"
+		"hello".rjust(20)           #=> "               hello"
+		"hello".rjust(20, '1234')   #=> "123412341234123hello"
+	```
 
 ### Module
 
